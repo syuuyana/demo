@@ -1,0 +1,26 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /*background-image: url("https://cdn.pixabay.com/photo/2016/06/02/23/08/lemons-1432439_960_720.jpg");  /* 写真の指定 */
+    background-color: #ccffcc;
+	background-blend-mode: lighten;
+    background-position: center center;  /* 画像を常に天地左右の中央に配置 */
+    background-repeat: no-repeat;  /* 画像をタイル状に繰り返し表示しない */
+    background-attachment: fixed;  /* コンテンツの高さが画像の高さより大きい時、動かないように固定 */
+    background-size: cover;  /* 表示するコンテナの大きさに基づいて、背景画像を調整 */
+}
+
+.main_wrap {
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+img {
+	opacity: 0;
+}

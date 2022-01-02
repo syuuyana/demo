@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>診断ページ</title>
+		
+		 <!-- import Vue.js, javascript, css before Element UI-->
+		<script th:src="@{/webjars/vue/2.5.3-1/vue.js}"></script>
+    	<script th:src="@{/webjars/element-ui/2.0.8/lib/index.js}"></script>
+    	<script th:src="@{/webjars/element-ui/2.0.8/lib/umd/locale/ja.js}"></script> <!-- 日本語訳用パッケージ  -->
+    	<script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+    	<link rel="stylesheet" th:href="@{/webjars/element-ui/2.0.8/lib/theme-chalk/index.css}" />
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+		<link rel="stylesheet" th:href="@{/css/style.css}" />
+	</head>
+	<body>
+		<div id="app">
+		
+			<el-container>
+            	<el-header>
+            	 	<a th:href="@{'/'}">
+                		<img th:src="@{/image/icon.png}" width="20px" height="20px" />
+                		<span>Which prefecture is it?</span>
+                	</a>
+            	</el-header>
+        	</el-container>
+            
+            <el-container>
+            	<el-menu default-openeds="[1]">
+                	<el-submenu index="1">
+                    	<template slot="title">
+                        	<i class="el-icon-location"></i>
+                            <span>メニュー</span>
+                        </template>
+                    </el-submenu>
+                </el-menu>
+            </el-container>
+            
+            <el-main>
+            
+            	<h1>～ Which prefecture is it? とは ～</h1>
+				<p>このアプリは、いくつかの写真から、どの都道府県を紹介しているかを当ててもらい、<br>
+				各都道府県の魅力を紹介するアプリケーションです。<br>
+				以下のボタンより、モードをお選びください。
+				</p>
+				<el-row>
+                	<el-col>
+                		<el-card @click="onTenCardCLick()">
+                    		<img class="image" />
+                        	<div style="border: solid 3px #000;">
+                        		<span>初級コース</span>
+                            	<div class="bottom clearfix">
+                            		<span>写真10枚で地名を当てていただきます</span>
+                            	</div>
+                        	</div>
+                     	</el-card>
+                    </el-col>
+                    <el-col>
+                		<el-card @click="onTenCardCLick">
+                    		<img class="image" />
+                        	<div style="border: solid 3px #000;">
+                        		<span>中級コース</span>
+                            	<div class="bottom clearfix">
+                            		<span>写真8枚で地名を当てていただきます</span>
+                            	</div>
+                        	</div>
+                     	</el-card>
+                    </el-col>
+                    <el-col>
+                		<el-card @click="onTenCardCLick">
+                    		<img class="image" />
+                        	<div style="border: solid 3px #000;">
+                        		<span>上級コース</span>
+                            	<div class="bottom clearfix">
+                            		<span>写真6枚で地名を当てていただきます</span>
+                            	</div>
+                        	</div>
+                     	</el-card>
+                    </el-col>
+                 </el-row>
+             </el-main>
+            
+			<!--  
+				<img src="https://cdn.pixabay.com/photo/2012/08/30/06/18/oita-55282_960_720.jpg">
+				<img src="https://cdn.pixabay.com/photo/2012/08/30/06/20/oita-55283_960_720.jpg">
+				<img src="https://cdn.pixabay.com/photo/2014/09/05/02/18/oita-436078_960_720.jpg">
+			-->
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
+		<script type="text/javascript" th:src="@{/js/script.js}"></script>
+	</body>
+</html>
