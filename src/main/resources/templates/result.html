@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>おみくじ</title>
+		
+		 <!-- import Vue.js, javascript, css before Element UI-->
+		<script th:src="@{/webjars/vue/2.5.3-1/vue.js}"></script>
+    	<script th:src="@{/webjars/element-ui/2.0.8/lib/index.js}"></script>
+    	<script th:src="@{/webjars/element-ui/2.0.8/lib/umd/locale/ja.js}"></script> <!-- 日本語訳用パッケージ  -->
+    	<script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+    	<link rel="stylesheet" th:href="@{/webjars/element-ui/2.0.8/lib/theme-chalk/index.css}" />
+		<link rel="stylesheet" th:href="@{/css/style.css}" />
+	</head>
+	<body>
+		<div id="app">
+			<el-container>
+	     		<el-header>
+	         		<a th:href="@{'/'}">
+	            		<img th:src="@{/image/icon.png}" width="20px" height="20px" />
+	            		<span @click="onMainCardCLick">Which prefecture is it?</span>
+	          		</a>
+	        	</el-header>
+	        	<el-container>
+       				<el-main>
+       					<div class="result">
+       						<div class="question">
+       							<h3>貴方へのおすすめの温泉は、、</h3>
+       							<h1>観海寺温泉です！！！</h1>
+       						</div>
+       					</div>
+       				</el-main>
+      			</el-container>
+	        </el-container>
+	    </div>
+	    <script>
+		  	ELEMENT.locale(ELEMENT.lang.ja)
+		    var ten = new Vue({
+		    	el: '#app',
+		    	data: {
+		            qFlg: 1,
+		        },
+		    	name: 'PageA',
+		        methods: {
+		        	onMainCardCLick: function () {
+		                window.location.href = "index";
+		            },
+		            onResultCLick: function () {
+		                window.location.href = "result";
+		            },
+		            counterQuestion: function() {
+		            	this.qFlg = this.qFlg + 1;
+		            }
+		        },
+		    });
+		</script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
+	 </body>
+</html>
+ 

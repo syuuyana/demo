@@ -20,3 +20,12 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+.img {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  background: skyblue;
+  text-align: center;
+  line-height: 200px;
+}

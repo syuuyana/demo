@@ -6,11 +6,13 @@
 		
 		 <!-- import Vue.js, javascript, css before Element UI-->
 		<script th:src="@{/webjars/vue/2.5.3-1/vue.js}"></script>
+		<link rel="stylesheet" th:href="@{/webjars/element-ui/2.0.8/lib/theme-chalk/index.css}" />
     	<script th:src="@{/webjars/element-ui/2.0.8/lib/index.js}"></script>
     	<script th:src="@{/webjars/element-ui/2.0.8/lib/umd/locale/ja.js}"></script> <!-- 日本語訳用パッケージ  -->
     	<script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
-    	<link rel="stylesheet" th:href="@{/webjars/element-ui/2.0.8/lib/theme-chalk/index.css}" />
-		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    	
+		<!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script> -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
 		<link rel="stylesheet" th:href="@{/css/style.css}" />
 	</head>
 	<body>
@@ -45,8 +47,42 @@
       			</el-container>
 	        </el-container>
 	    </div>
-	    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
-	    <script type="text/javascript" th:src="@{/js/ten.js}"></script>
+	    
+	    <script>
+		  	ELEMENT.locale(ELEMENT.lang.ja)
+		    var ten = new Vue({
+		    	el: '#app',
+		    	data: {
+		            imageList: [10]
+		        },
+		    	name: 'PageA',
+		        methods: {
+		        	showMessage: function () {
+		            	this.msg = 'こんにちわ';
+		            },
+		            onMainCardCLick: function () {
+		                window.location.href = "index";
+		            },
+		        }
+		    });
+	
+		    /* gsap.to(
+		    	"img",
+		     	{
+		      		delay: 1,
+		      		duration: 1.5,
+		      		y: -10, // 少し上に移動させる
+		      		opacity: 1,
+		      		ease: "power2.out",
+		      		// 複数要素を扱うプロパティ
+		      		stagger: {
+		        		from: "start", //左側から
+		        		amount: 1.6 // 0.8秒おきに
+		      		}
+		      	}
+		    ); */
+	    </script>
+	    
 	 </body>
 </html>
  
