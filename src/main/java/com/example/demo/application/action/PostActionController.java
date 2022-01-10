@@ -15,7 +15,7 @@ import com.example.demo.domain.model.SelectOneModel;
 import com.example.demo.domain.service.SelectOneAction;
 
 @RestController // JsonやXML等を返すWebAPI用のコントローラ. Viewに遷移しないのでメソッドの戻り値はレスポンスのコンテンツになる。
-@RequestMapping("/one")
+@RequestMapping("action/one")
 public class PostActionController {
 	
 	@Autowired
@@ -32,7 +32,7 @@ public class PostActionController {
 		select.setOneSecondTimes(body.getSecond_times());
 		select.setOneThirdTimes(body.getThird_times());
 		select.setSelectOneDate(selectDate.toLocalDate());
-		SelectOneAction.countOne(select);
+		selectOneAction.countOne(select);
 		
 		return new ResponseEntity<>(HttpStatus.OK); // status code 200
 	}

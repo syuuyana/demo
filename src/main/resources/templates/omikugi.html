@@ -72,7 +72,9 @@
 	       						</div>
 	       					</div>
        					</div>
-       					<div class="loading" v-if="qFlg == 4">
+       					<el-alert v-if="yesFlg && qFlg == 4" title="投稿完了！" type="success" description="正常に投稿されました。" show-icon></el-alert>
+       					<el-alert v-if="noFlg && qFlg == 4" title="投稿失敗…" type="error" description="エラーが起きたみたいで、投稿失敗しました。" show-icon></el-alert>
+       					<div class="loading" v-if="qFlg == 5">
        						<div id="overlay">
        							<div id="content">
        								<img th:src="@{/image/mozo.svg}" class="content mt-50" width="100px" height="100px" />
@@ -95,6 +97,8 @@
 		    	el: '#app',
 		    	data: {
 		            qFlg: 1,
+		            yesFlg: false,
+		            noFlg: false
 		        },
 		    	name: 'omikugi',
 		        methods: {
@@ -102,11 +106,20 @@
 		        			console.log(value);
 		        			var that = this;
 		        			$.ajax({
-		        				url: '/one',  // thisの更新対策(scopeでは別処理)
+		        				url: 'action/one',  // thisの更新対策(scopeでは別処理)
 		        				type: 'post',
 		        				data: JSON.stringify(value),
 		        				contentType: 'application/json'
-		        			})
+		        			}).then(
+		        				function(response) {
+		        					that.yesFlg = true;
+		        					that.noFlg = false;
+		        				},
+		        				function () {
+		        					that.yesFlg = false;
+		        					that.noFlg = true;
+		        				}
+		        			);
 		        		}, // ここでajaxの非同期通信を終了
 			        	onMainCardCLick: function () {
 			                window.location.href = "index";
