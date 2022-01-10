@@ -11,19 +11,25 @@
     	<script th:src="@{/webjars/element-ui/2.0.8/lib/umd/locale/ja.js}"></script> <!-- 日本語訳用パッケージ  -->
     	<script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
     	
+    	<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Courgette&family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+    	
 		<!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script> -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
 		<link rel="stylesheet" th:href="@{/css/style.css}" />
 	</head>
 	<body>
 		<div id="app">
-			<el-container>
-	     		<el-header>
-	         		<a th:href="@{'/'}">
-	            		<img th:src="@{/image/icon.png}" width="20px" height="20px" />
-	            		<span @click="onMainCardCLick">Which prefecture is it?</span>
-	          		</a>
-	        	</el-header>
+			
+	     		<el-container>
+	            	<el-header>
+	            		<div class="mt-20">
+	            			<a th:href="@{'/'}"><img th:src="@{/image/onsen.png}" width="20px" height="20px" /></a>
+			            	<a th:href="@{'/'}" class="title"><span class="bad_script">Beppu Hatto</span></a>
+	            		</div>
+	            	</el-header>
+	        	</el-container>
 	        	<el-container>
        				<el-main>
        					<div class="1">
@@ -45,7 +51,6 @@
 	       				</div>
        				</el-main>
       			</el-container>
-	        </el-container>
 	    </div>
 	    
 	    <script>

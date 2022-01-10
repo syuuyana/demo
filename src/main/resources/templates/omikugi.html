@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="UTF-8">
-		<title>おみくじ</title>
+		<title>Beppu Hatto｜おみくじ</title>
 		
 		 <!-- import Vue.js, javascript, css before Element UI-->
 		<script th:src="@{/webjars/vue/2.5.3-1/vue.js}"></script>
@@ -10,50 +10,84 @@
     	<script th:src="@{/webjars/element-ui/2.0.8/lib/umd/locale/ja.js}"></script> <!-- 日本語訳用パッケージ  -->
     	<script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
     	<link rel="stylesheet" th:href="@{/webjars/element-ui/2.0.8/lib/theme-chalk/index.css}" />
+    	
+    	<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Courgette&family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+    	
 		<link rel="stylesheet" th:href="@{/css/style.css}" />
 	</head>
 	<body>
 		<div id="app">
-			<el-container>
-	     		<el-header>
-	         		<a th:href="@{'/'}">
-	            		<img th:src="@{/image/icon.png}" width="20px" height="20px" />
-	            		<span @click="onMainCardCLick">Which prefecture is it?</span>
-	          		</a>
-	        	</el-header>
+	     		<el-container>
+            		<el-header>
+	            		<div class="mt-20">
+	            			<a th:href="@{'/'}"><img th:src="@{/image/onsen.png}" width="20px" height="20px" /></a>
+			            	<a th:href="@{'/'}" class="title"><span class="bad_script">Beppu Hatto</span></a>
+	            		</div>
+	            	</el-header>
+	        	</el-container>
 	        	<el-container>
        				<el-main>
        					<div class="q1_1" v-if="qFlg == 1">
        						<div class="question">
-       							<h1>Q1, 温度は、どのくらいが理想ですか？</h1>
+       							<h1>Q1</h1>
+       							<h1>温度は、どのくらいが理想ですか？</h1>
        						</div>
-       						<div class="click">
-       							<button @click="counterQuestion">高め</button>
-       							<button @click="counterQuestion">普通</button>
-       							<button @click="counterQuestion">低め</button>
+       						<div class="click mt-50">
+       							<div class="img mr-10" style="display: inline-block;" @click="oneclick(3); counterQuestion()">
+			                        <span>高め</span>
+			                    </div>
+			                    <div class="img ml-10" style="display: inline-block;" @click="oneclick(2); counterQuestion()">
+			                        <span>普通</span>
+			                    </div>
+			                    <div class="img ml-10" style="display: inline-block;" @click="oneclick(1); counterQuestion()">
+			                        <span>低め</span>
+			                    </div>
        						</div>
        					</div>
        					<div class="q1_2" v-if="qFlg == 2">
        						<div class="question">
-       							<h1>Q2, 硫黄は、どのくらいが理想ですか？</h1>
+       							<h1>Q2</h1>
+       							<h1>硫黄は、どのくらいが理想ですか？</h1>
        						</div>
-       						<div class="click">
-       							<button @click="counterQuestion">濃い</button>
-       							<button @click="counterQuestion">普通</button>
-       							<button @click="counterQuestion">薄め</button>
+       						<div class="click mt-50">
+       							<div class="img mr-10" style="display: inline-block;" @click="counterQuestion()">
+			                        <span>高め</span>
+			                    </div>
+			                    <div class="img ml-10" style="display: inline-block;" @click="counterQuestion()">
+			                        <span>普通</span>
+			                    </div>
+			                    <div class="img ml-10" style="display: inline-block;" @click="counterQuestion()">
+			                        <span>低め</span>
+			                    </div>
        						</div>
        					</div>
        					<div class="q_omikugi" v-if="qFlg == 3">
        						<div class="omikigi">
-       							<h1>「ひく」ボタンをクリックして、おみくじを引いてください！！</h1>
+       							<h1>「ひく」ボタンをクリックすると、<br>おみくじが引けるよ！！</h1>
+       							<img th:src="@{/image/omikugi.png}" class="content p_omikugi" width="100px" height="100px" />
 	       						<div class="click">
-	       							<button @click="onResultCLick">引く</button>
+	       							<button class="p_omikugi mt-50" @click="counterQuestion">引く</button>
 	       						</div>
+	       					</div>
+       					</div>
+       					<div class="loading" v-if="qFlg == 4">
+       						<div id="overlay">
+       							<div id="content">
+       								<img th:src="@{/image/mozo.svg}" class="content mt-50" width="100px" height="100px" />
+       								<div class="content mt-80">
+       									<i class="el-icon-loading"></i>
+       								</div>
+       								<div class="content mt-50">
+			       						<span>ちょっとだけ待ってね。</span>
+			       						<button @click="onResultCLick">次へ</button>
+			       					</div>
+		       					</div>
 	       					</div>
        					</div>
        				</el-main>
       			</el-container>
-	        </el-container>
 	    </div>
 	    <script>
 		  	ELEMENT.locale(ELEMENT.lang.ja)
@@ -62,18 +96,41 @@
 		    	data: {
 		            qFlg: 1,
 		        },
-		    	name: 'PageA',
+		    	name: 'omikugi',
 		        methods: {
-		        	onMainCardCLick: function () {
-		                window.location.href = "index";
-		            },
-		            onResultCLick: function () {
-		                window.location.href = "result";
-		            },
-		            counterQuestion: function() {
-		            	this.qFlg = this.qFlg + 1;
-		            }
-		        },
+		        		oneclick: function(value) {
+		        			console.log(value);
+		        			var that = this;
+		        			$.ajax({
+		        				url: '/one',  // thisの更新対策(scopeでは別処理)
+		        				type: 'post',
+		        				data: JSON.stringify(value),
+		        				contentType: 'application/json'
+		        			})
+		        		}, // ここでajaxの非同期通信を終了
+			        	onMainCardCLick: function () {
+			                window.location.href = "index";
+			            },
+			            onResultCLick: function () {
+			                window.location.href = "result";
+			            },
+			            counterQuestion: function() {
+			            	if(this.qFlg == 3) {
+			            		$(".p_omikugi").css( { transform: "skew(20deg, 5deg)" } );
+			            		this.qFlg = this.qFlg + 1;
+			            	}
+			            	else
+			            	{
+			            		this.qFlg = this.qFlg + 1;
+			            	}
+			            }
+		         },
+		         created: function() {
+			    	console.log('created');
+			     },
+			     mounted: function(){
+			        console.log('mounted');
+			     },
 		    });
 		</script>
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>

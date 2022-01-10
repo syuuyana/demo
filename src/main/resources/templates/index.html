@@ -2,70 +2,82 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="UTF-8">
-		<title>診断ページ</title>
+		<title>Beppu Hatto｜ホーム</title>
 		
 		 <!-- import Vue.js, javascript, css before Element UI-->
 		<script th:src="@{/webjars/vue/2.5.3-1/vue.js}"></script>
     	<script th:src="@{/webjars/element-ui/2.0.8/lib/index.js}"></script>
     	<script th:src="@{/webjars/element-ui/2.0.8/lib/umd/locale/ja.js}"></script> <!-- 日本語訳用パッケージ  -->
     	<script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+    	
+    	<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Courgette&family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+    	
     	<link rel="stylesheet" th:href="@{/webjars/element-ui/2.0.8/lib/theme-chalk/index.css}" />
 		<link rel="stylesheet" th:href="@{/css/style.css}" />
+		
 	</head>
 	<body>
 		<div id="app">
 		
 			<el-container>
             	<el-header>
-            	 	<a th:href="@{'/'}">
-                		<img th:src="@{/image/icon.png}" width="20px" height="20px" />
-                		<span>Beppu Hatto</span>
-                	</a>
+            		<div class="mt-20">
+            			<a th:href="@{'/'}"><img th:src="@{/image/onsen.png}" width="20px" height="20px" /></a>
+		            	<a th:href="@{'/'}" class="title"><span class="bad_script">Beppu Hatto</span></a>
+            		</div>
             	</el-header>
         	</el-container>
             
             <el-container>
 	            <el-main>
-	            	<h1>Beppu Hatto とは</h1>
-					<p>このアプリは、いくつかの写真から、どの都道府県を紹介しているかを当ててもらい、<br>
-					各都道府県の魅力を紹介するアプリケーションです。<br>
-					あなたにとって、一番ぴったりの温泉が見つかりますよ！
-					</p>
-					<el-row>
-	                	<el-col>
-	                		<el-card>
-	                    		<div class="img" style="display: inline-block;" @click="onOmikugiCardCLick" @mouseenter="onOmikugienter" @mouseleave="onMouseleave">
-	                        		<img th:src="@{/image/icon.png}" width="20px" height="20px" />
-	                        		<span>「湯質」で選ぶ</span>
-	                        	</div>
-	                     	</el-card>
-	                    </el-col>
-	                    <el-col>
-	                		<el-card>
-	                    		<div class="img" style="display: inline-block;" @click="onTenCardCLick" @mouseenter="onTenCardenter" @mouseleave="onMouseleave">
-	                        		<img th:src="@{/image/icon.png}" width="20px" height="20px" />
-	                        		<span>「立地」で選ぶ</span>
-	                        	</div>
-	                     	</el-card>
-	                    </el-col>
-	                    <el-col>
-	                		<el-card>
-	                        	<div class="img" style="display: inline-block;" @click="onTenCardCLick" @mouseenter="onTenCardenter" @mouseleave="onMouseleave">
-	                        		<img th:src="@{/image/icon.png}" width="20px" height="20px" />
-	                        		<span>温泉日記</span>
-	                        	</div>
-	                     	</el-card>
-	                    </el-col>
-	                 </el-row>
-	                 <div>
-	                 	<img th:src="@{/image/Capybara.jpg}" width="300px" height="100px" @mouseenter="onCapyenter" @mouseleave="onMouseleave" />
+	            	<div class="index_messages">
+	            		<div style="display: block;">
+	            			<a th:href="@{'/'}" class="title exp"><span class="bad_script">Beppu Hatto</span></a>
+		            		<h1> とは</h1>
+	            		</div>
+		            	<h4>あなたにぴったりの別府温泉が見つかるサービスです</h4>
+						<p class="mt-20">これは、様々な条件から八種類あるといわれる別府温泉<br>
+							の中から、あなたに合う温泉を提案するサービスです。<br>
+							あなたにとって、一番ぴったりの温泉が見つかりますよ！
+						</p>
+					</div>
+					<div class="index_selection mt-50">
+						<el-row>
+							<div>
+								<el-col>
+			                    	<div class="img mr-10" style="display: inline-block;" @click="onOmikugiCardCLick" @mouseenter="onOmikugienter" @mouseleave="onMouseleave">
+			                        	<img th:src="@{/image/onsen.png}" width="20px" height="20px" />
+			                        	<span>「湯質」で選ぶ</span>
+			                        </div>
+			                    	<div class="img ml-10" style="display: inline-block;" @click="onTenCardCLick" @mouseenter="onTenCardenter" @mouseleave="onMouseleave">
+			                        	<img th:src="@{/image/onsen.png}" width="20px" height="20px" />
+			                        	<span>「立地」で選ぶ</span>
+			                        </div>
+			                    </el-col>
+							</div>
+		                    <el-col>
+		                        <div class="img" style="display: inline-block;" @click="onTenCardCLick" @mouseenter="onTenCardenter" @mouseleave="onMouseleave">
+		                        	<img th:src="@{/image/onsen.png}" width="20px" height="20px" />
+		                        	<span>温泉日記</span>
+		                        </div>
+		                    </el-col>
+		                 </el-row>
+		             </div>
+	                 <div class="animal" >
+	                 	<div class="animal_chat" style="display: inline-block;">
+	                 		<p>{{ display }}</p>
+	                 		<img th:src="@{/image/fuki2.svg}" width="300px" height="300px" />
+	                 	</div>
+	                 	<img class="pt-50" th:src="@{/image/capy.png}"  width="300px" height="300px" @mouseenter="onCapyenter" @mouseleave="onMouseleave" />
 	                 </div>
 	             </el-main>
 			</el-container>
             
             <el-container>
             	<el-footer>
-            		{{ display }}
+            		
             	</el-footer>
             </el-container>
 			<!--  
@@ -82,14 +94,14 @@
 				data: {
 					informations: [
 						'おはよう',
-						'日記',
-						'おみくじ',
+						'立地',
+						'湯質',
 						'お好み',
 					],
 					display: "",
 				},
-				name: 'PageA',
-			    methods: {
+				name: 'index',
+				methods: {
 			        onTenCardCLick: function () {
 			            window.location.href = "ten";
 			        },
@@ -101,13 +113,12 @@
 			    	},
 			    	onOmikugienter: function() {
 			        	this.display = this.informations[2];
-			        	console.log("おーい");
 			    	},
 			    	onTenCardenter: function() {
 			        	this.display = this.informations[1];
 			    	},
 			    	onMouseleave: function() {
-			    		this.display = "";
+			    		this.display = this.informations[0];
 			    	},
 			    },
 			});
