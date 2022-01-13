@@ -104,23 +104,27 @@
 		    	name: 'omikugi',
 		        methods: {
 		        		oneclick: function(value) {
-		        			this.first_times = value;
-		        			var that = this;
-		        			console.log(that.first_times);
+		      				const json1 = {
+		      						first_times: value,
+		      						second_times: value,
+		      						third_times: value,
+		      						pull_index: value,
+		      						select_date: '2022-01-13'
+		      				};
 		        			$.ajax({
 		        				url: 'action/one',  // thisの更新対策(scopeでは別処理)
 		        				type: 'post',
-		        				data: JSON.stringify(that.first_times),
+		        				data: JSON.stringify(json1),
 		        				contentType: 'application/json'
 		        			}).then(
 		        				function(response) {
-		        					that.yesFlg = true;
-		        					that.noFlg = false;
-		        					that.first_times = "";
+		        					this.yesFlg = true;
+		        					this.noFlg = false;
+		        					this.first_times = "";
 		        				},
 		        				function () {
-		        					that.yesFlg = false;
-		        					that.noFlg = true;
+		        					this.yesFlg = false;
+		        					this.noFlg = true;
 		        				}
 		        			);
 		        		}, // ここでajaxの非同期通信を終了
