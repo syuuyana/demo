@@ -10,7 +10,7 @@ import com.example.demo.domain.model.SelectOneModel;
 
 @Service // Service は業務処理を提供する(サービス層)
 @Transactional // 「ここからここまでワンセット」な処理単位
-public class SelectOneAction {
+public class SelectOneService {
 	
 	@Autowired // newの代わりに用いられる
 	SelectOneMapper selectOneMapper;

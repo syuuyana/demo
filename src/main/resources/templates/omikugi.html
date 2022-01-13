@@ -97,23 +97,26 @@
 		    	el: '#app',
 		    	data: {
 		            qFlg: 1,
+		            first_times: "",
 		            yesFlg: false,
 		            noFlg: false
 		        },
 		    	name: 'omikugi',
 		        methods: {
 		        		oneclick: function(value) {
-		        			console.log(value);
+		        			this.first_times = value;
 		        			var that = this;
+		        			console.log(that.first_times);
 		        			$.ajax({
 		        				url: 'action/one',  // thisの更新対策(scopeでは別処理)
 		        				type: 'post',
-		        				data: JSON.stringify(value),
+		        				data: JSON.stringify(that.first_times),
 		        				contentType: 'application/json'
 		        			}).then(
 		        				function(response) {
 		        					that.yesFlg = true;
 		        					that.noFlg = false;
+		        					that.first_times = "";
 		        				},
 		        				function () {
 		        					that.yesFlg = false;
