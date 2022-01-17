@@ -51,9 +51,28 @@
 			                        	<img th:src="@{/image/onsen.png}" width="20px" height="20px" />
 			                        	<span>「湯質」で選ぶ</span>
 			                        </div>
-			                    	<div class="img ml-10" style="display: inline-block;" @click="onTenCardCLick" @mouseenter="onTenCardenter" @mouseleave="onMouseleave">
+			                    	<div class="img ml-10" style="display: inline-block;" @click="onOmikugiCardCLick" @mouseenter="onTenCardenter" @mouseleave="onMouseleave">
 			                        	<img th:src="@{/image/onsen.png}" width="20px" height="20px" />
 			                        	<span>「立地」で選ぶ</span>
+			                        </div>
+			                    </el-col>
+							</div>
+							<div>
+								<el-col>
+			                    	<div class="img mr-10" style="display: inline-block;" @click="onOmikugiCardCLick" @mouseenter="onOmikugienter" @mouseleave="onMouseleave">
+			                        	<img th:src="@{/image/onsen.png}" width="20px" height="20px" />
+			                        	<span>「ロケーション」で選ぶ</span>
+			                        </div>
+			                        <div class="animal" >
+					                 	<div class="animal_chat" style="display: inline-block;">
+					                 		<p>{{ display }}</p>
+					                 		<img th:src="@{/image/fuki2.svg}" width="300px" height="300px" />
+					                 	</div>
+					                 	<img class="pt-50" th:src="@{/image/capy.png}"  width="300px" height="300px" @mouseenter="onCapyenter" @mouseleave="onMouseleave" />
+					                 </div>
+			                    	<div class="img ml-10" style="display: inline-block;" @click="onOmikugiCardCLick" @mouseenter="onTenCardenter" @mouseleave="onMouseleave">
+			                        	<img th:src="@{/image/onsen.png}" width="20px" height="20px" />
+			                        	<span>「アクティビティ」で選ぶ</span>
 			                        </div>
 			                    </el-col>
 							</div>
@@ -65,6 +84,18 @@
 		                    </el-col>
 		                 </el-row>
 		             </div>
+		             <div>
+						<el-col>
+	                    	<div class="img mr-10" style="display: inline-block;" @click="onOmikugiCardCLick" @mouseenter="onOmikugienter" @mouseleave="onMouseleave">
+	                        	<img th:src="@{/image/onsen.png}" width="20px" height="20px" />
+	                        	<span>「湯質」で選ぶ</span>
+	                        </div>
+	                    	<div class="img ml-10" style="display: inline-block;" @click="onOmikugiCardCLick" @mouseenter="onTenCardenter" @mouseleave="onMouseleave">
+	                        	<img th:src="@{/image/onsen.png}" width="20px" height="20px" />
+	                        	<span>「立地」で選ぶ</span>
+	                        </div>
+	                    </el-col>
+					</div>
 	                 <div class="animal" >
 	                 	<div class="animal_chat" style="display: inline-block;">
 	                 		<p>{{ display }}</p>

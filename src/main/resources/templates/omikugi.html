@@ -52,29 +52,35 @@
        							<h1>硫黄は、どのくらいが理想ですか？</h1>
        						</div>
        						<div class="click mt-50">
-       							<div class="img mr-10" style="display: inline-block;" @click="counterQuestion()">
+       							<div class="img mr-10" style="display: inline-block;" @click="twoclick(3); counterQuestion()">
 			                        <span>高め</span>
 			                    </div>
-			                    <div class="img ml-10" style="display: inline-block;" @click="counterQuestion()">
+			                    <div class="img ml-10" style="display: inline-block;" @click="twoclick(2); counterQuestion()">
 			                        <span>普通</span>
 			                    </div>
-			                    <div class="img ml-10" style="display: inline-block;" @click="counterQuestion()">
+			                    <div class="img ml-10" style="display: inline-block;" @click="twoclick(1); counterQuestion()">
 			                        <span>低め</span>
 			                    </div>
        						</div>
        					</div>
-       					<div class="q_omikugi" v-if="qFlg == 3">
-       						<div class="omikigi">
-       							<h1>「ひく」ボタンをクリックすると、<br>おみくじが引けるよ！！</h1>
-       							<img th:src="@{/image/omikugi.png}" class="content p_omikugi" width="100px" height="100px" />
-	       						<div class="click">
-	       							<button class="p_omikugi mt-50" @click="counterQuestion">引く</button>
-	       						</div>
-	       					</div>
+       					<div class="q1_3" v-if="qFlg == 3">
+       						<div class="question">
+       							<h1>Q3</h1>
+       							<h1>白濁は、どのくらいが理想ですか？</h1>
+       						</div>
+       						<div class="click mt-50">
+       							<div class="img mr-10" style="display: inline-block;" @click="threeclick(3); counterQuestion()">
+			                        <span>濃い</span>
+			                    </div>
+			                    <div class="img ml-10" style="display: inline-block;" @click="threeclick(2); counterQuestion()">
+			                        <span>普通</span>
+			                    </div>
+			                    <div class="img ml-10" style="display: inline-block;" @click="threeclick(1); counterQuestion()">
+			                        <span>薄い</span>
+			                    </div>
+       						</div>
        					</div>
-       					<el-alert v-if="yesFlg && qFlg == 4" title="投稿完了！" type="success" description="正常に投稿されました。" show-icon></el-alert>
-       					<el-alert v-if="noFlg && qFlg == 4" title="投稿失敗…" type="error" description="エラーが起きたみたいで、投稿失敗しました。" show-icon></el-alert>
-       					<div class="loading" v-if="qFlg == 5">
+       					<div class="loading" v-if="qFlg == 4">
        						<div id="overlay">
        							<div id="content">
        								<img th:src="@{/image/mozo.svg}" class="content mt-50" width="100px" height="100px" />
@@ -93,41 +99,52 @@
 	    </div>
 	    <script>
 		  	ELEMENT.locale(ELEMENT.lang.ja)
+		  	const json = {};
 		    var ten = new Vue({
 		    	el: '#app',
 		    	data: {
 		            qFlg: 1,
-		            first_times: "",
 		            yesFlg: false,
-		            noFlg: false
+		            noFlg: false,
 		        },
 		    	name: 'omikugi',
 		        methods: {
-		        		oneclick: function(value) {
-		      				const json1 = {
-		      						first_times: value,
-		      						second_times: value,
-		      						third_times: value,
-		      						pull_index: value,
-		      						select_date: '2022-01-13'
-		      				};
+		        		threeclick: function(value) {
+		        			json['third_times'] = value;
+		        			json['select_date'] = new Date;
+		        			// 試験用
+		        			//const json1 = {
+		      				//		first_times: value,
+		      				//		second_times: value,
+		      				//		third_times: value,
+		      				//		select_date: '2022-01-13'
+		      				//};
 		        			$.ajax({
-		        				url: 'action/one',  // thisの更新対策(scopeでは別処理)
+		        				url: 'action/one/pull',  // thisの更新対策(scopeでは別処理)
 		        				type: 'post',
-		        				data: JSON.stringify(json1),
+		        				data: JSON.stringify(json),
 		        				contentType: 'application/json'
 		        			}).then(
 		        				function(response) {
 		        					this.yesFlg = true;
 		        					this.noFlg = false;
-		        					this.first_times = "";
+		        					delete json['first_times'];
+		        					delete json['second_times'];
+		        					delete json['third_times'];
+		        					delete json['select_date'];
 		        				},
 		        				function () {
 		        					this.yesFlg = false;
 		        					this.noFlg = true;
 		        				}
 		        			);
-		        		}, // ここでajaxの非同期通信を終了
+		        		},// ここでajaxの非同期通信を終了
+		        		oneclick: function(value) {
+		        			json['first_times'] = value;
+		      			}, 
+		      			twoclick: function(value) {
+		        			json['second_times'] = value;
+		      			}, 
 			        	onMainCardCLick: function () {
 			                window.location.href = "index";
 			            },
@@ -135,14 +152,7 @@
 			                window.location.href = "result";
 			            },
 			            counterQuestion: function() {
-			            	if(this.qFlg == 3) {
-			            		$(".p_omikugi").css( { transform: "skew(20deg, 5deg)" } );
-			            		this.qFlg = this.qFlg + 1;
-			            	}
-			            	else
-			            	{
-			            		this.qFlg = this.qFlg + 1;
-			            	}
+			            	this.qFlg = this.qFlg + 1;
 			            }
 		         },
 		         created: function() {

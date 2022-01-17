@@ -71,8 +71,23 @@
 		    	data: {
 		            qFlg: 1,
 		        },
-		    	name: 'PageA',
+		        created: function() {
+		        	this.init();
+		        },
+		    	name: 'Result',
 		        methods: {
+		        	init: function() {
+		        		$.ajax({
+		                    url: 'action/one/push',
+		                    type: 'post'
+		                }).then(
+		                		function() {
+		                			console.log(push_name);
+		                		},
+		                		function() {
+		                			console.log('error');
+		                		});
+		        	},
 		        	onMainCardCLick: function () {
 		                window.location.href = "index";
 		            },

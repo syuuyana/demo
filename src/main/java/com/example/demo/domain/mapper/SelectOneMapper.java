@@ -19,7 +19,7 @@ public interface SelectOneMapper {
 	SelectOneModel findAll();
 	
 	// idに応じて、データを格納する関数を作成
-	@Options(useGeneratedKeys = true, keyProperty = "select_id") // 自動採番されたidを取得(@Optionはその許可)
+	@Options(useGeneratedKeys = true, keyProperty = "selectId") // 自動採番されたidを取得(@Optionはその許可)
 	@Insert("INSERT INTO select_one (one_first_times, one_second_times, one_third_times, select_one_date) VALUES (#{oneFirstTimes}, #{oneSecondTimes}, #{oneThirdTimes}, #{selectOneDate})")
 	void insert(SelectOneModel one);
 }
