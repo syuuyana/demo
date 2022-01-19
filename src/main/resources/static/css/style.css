@@ -97,6 +97,12 @@ body {
 }
 
 
+.result_exp {
+	width: 70%;
+	margin: 0 auto;
+}
+
+
 /* モーダル設定 */
 #overlay{
   z-index: 1;

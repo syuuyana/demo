@@ -31,28 +31,34 @@
        				<el-main>
        					<div class="result">
        						<div class="question">
-       							<h3>貴方へのおすすめの温泉は、、</h3>
-       							<h1>観海寺温泉です！！！</h1>
+       							<h1>貴方へのおすすめの温泉は、{{ push_name }}です。</h1>
        						</div>
        						<div class="comment">
 	       						<div class="rank" style="display: inline-block;">
 	       							<table border="1">
 									    <tr>
 									      <th>硫黄の濃度</th>
-									      <td>★★★</td>
+									      <td>「iou」★★★</td>
 									    </tr>
 									    <tr>
 									      <th>色の濃淡</th>
-									      <td>★★★</td>
+									      <td>「color」★★★</td>
 									    </tr>
 									    <tr>
 									      <th>温度の加減</th>
-									      <td>★★★</td>
+									      <td>「temp」★★★</td>
 									    </tr>
 								  	</table>
 	       						</div>
 	       						<div class="result_message" style="display: inline-block;">
-	       							<h6>観海寺温泉は、杉乃井ホテルで有名です。</h6>
+	       							<h4 class="result_exp mt-50">「exp」観海寺温泉は、杉乃井ホテルで有名なエリアです。
+	       							また、コバルトブルーの湯色も楽しめるエリアでもあります。
+	       							大量に含まれるメタケイ酸が太陽光の影響で青みがかり、
+	       							  塩化物泉は、湯冷めしにくく「温まりの湯」といわれ、また殺菌効果にも期待出来ることから
+	       							  「傷の湯」とも呼ばれる。
+	       							</h4>
+	       							<h4>「quality」単純温泉、塩化物泉</h4>
+	       							<h4>「effect」神経痛・リューマチ・高血圧症・糖尿病</h4>
 	       							<button>詳しくはこちら</button>
 	       						</div>
 	       						<div class="introduce">
@@ -70,6 +76,7 @@
 		    	el: '#app',
 		    	data: {
 		            qFlg: 1,
+		            push_name: "",
 		        },
 		        created: function() {
 		        	this.init();
@@ -79,13 +86,16 @@
 		        	init: function() {
 		        		$.ajax({
 		                    url: 'action/one/push',
-		                    type: 'post'
+		                    type: 'post',
+		                    dataType: 'html'
 		                }).then(
 		                		function() {
+		                			console.log("成功");
 		                			console.log(push_name);
 		                		},
 		                		function() {
 		                			console.log('error');
+		                			console.log("失敗");
 		                		});
 		        	},
 		        	onMainCardCLick: function () {

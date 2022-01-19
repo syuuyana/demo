@@ -18,6 +18,9 @@ public class PostActionController {
 	@Autowired
 	SelectOneService selectOneService;
 	
+	@Autowired
+	InsertTimes insertTimes;
+	
 	@RequestMapping(method = RequestMethod.POST)
 	ResponseEntity<String> doOnePull(@RequestBody InsertTimes body) { // @RequestBodyでApp本体がjson形式でデータを受信
 		SelectOneModel select = new SelectOneModel(); // 新しいデータが入ってくる
@@ -38,9 +41,11 @@ public class PostActionController {
 		select.setOneThirdTimes(k);
 		select.setSelectOneDate(body.getSelect_date());
 		selectOneService.countOne(select);
-		//System.out.println("取得したIDは" + one_id + "です");
+		
 		//System.out.println(select.getSelectId());
-		//select.setSelectId(one_id);
+		int one_id = select.getSelectId();
+		System.out.println("取得したIDは" + one_id + "です");
+		insertTimes.setSelectId(one_id);
 		return new ResponseEntity<>(HttpStatus.OK); // status code 200
 	}
 }

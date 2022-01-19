@@ -29,7 +29,7 @@ public class GetActionController {
 	PushOneService pushOneService;
 	
 	@Autowired
-	SelectOneModel selectOneModel;
+	InsertTimes insertTimes;
 	
 		@RequestMapping(method = RequestMethod.POST)
 		ResponseEntity<String> doOnePush() {
@@ -39,20 +39,22 @@ public class GetActionController {
 			OutputResult result = new OutputResult();
 			
 			// 入力部分
-			int one_id = selectOneModel.getSelectId();
+			int one_id = insertTimes.getSelectId();
 			System.out.println("取得したIDは" + one_id + "です");
 			SelectOneModel one_date = selectOneMapper.findOne(one_id);
 			int i = one_date.getOneFirstTimes();
 			int j = one_date.getOneSecondTimes();
-			int k = one_date.getOneThirdTimes();
+		    int k = one_date.getOneThirdTimes();
+		    System.out.println("取得した数字は" + i + "と" + j + "と" + k + "です");
 			
 			// 処理部分
 			int return_one_id = sort.indexOneSorting(i, j, k);
 			PushOneModel return_one_data = pushOneMapper.findOne(return_one_id);
+			System.out.println(return_one_data);
 			
 			// 出力部分
 			result.setPush_name(return_one_data.getPushName());
-			
+			System.out.println(return_one_data.getPushName());
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 }
