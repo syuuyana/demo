@@ -32,7 +32,7 @@ public class GetActionController {
 	InsertTimes insertTimes;
 	
 		@RequestMapping(method = RequestMethod.POST)
-		ResponseEntity<String> doOnePush() {
+		ResponseEntity<OutputResult> doOnePush() {
 			SelectOneModel select = new SelectOneModel();
 			IndexSortingController sort = new IndexSortingController();
 			PushOneModel push = new PushOneModel();
@@ -54,7 +54,16 @@ public class GetActionController {
 			
 			// 出力部分
 			result.setPush_name(return_one_data.getPushName());
-			System.out.println(return_one_data.getPushName());
-			return new ResponseEntity<>(HttpStatus.OK);
+			System.out.println(result.getPush_name());
+			System.out.println(result);
+			
+			//public ModelAndView returnData() {
+			//	ModelAndView mav = new ModelAndView();
+			//	mav.setViewName("push_name");
+			//	mav.addObject("push_name", return_one_data.getPushName());
+			//	return mav;
+			//}
+			
+			return new ResponseEntity<>(result, HttpStatus.OK);
 		}
 }

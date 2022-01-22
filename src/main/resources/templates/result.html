@@ -31,7 +31,7 @@
        				<el-main>
        					<div class="result">
        						<div class="question">
-       							<h1>貴方へのおすすめの温泉は、{{ push_name }}です。</h1>
+       							<h1>貴方へのおすすめの温泉は、{{ pushname }}です。</h1>
        						</div>
        						<div class="comment">
 	       						<div class="rank" style="display: inline-block;">
@@ -76,22 +76,28 @@
 		    	el: '#app',
 		    	data: {
 		            qFlg: 1,
-		            push_name: "",
-		        },
-		        created: function() {
-		        	this.init();
+		            pushname: "",
+		            a: "hello",
 		        },
 		    	name: 'Result',
+		    	created: function() {
+		    		console.log('created');
+		    		this.init();
+		        },
+		        mounted: function(){
+			        console.log('mounted');
+			     },
 		        methods: {
 		        	init: function() {
 		        		$.ajax({
 		                    url: 'action/one/push',
 		                    type: 'post',
-		                    dataType: 'html'
 		                }).then(
-		                		function() {
+		                		function(get) {
 		                			console.log("成功");
-		                			console.log(push_name);
+		                			console.log(get.push_name);
+		                			this.pushname = get.push_name;
+		                			console.log(this.pushname);
 		                		},
 		                		function() {
 		                			console.log('error');
@@ -106,7 +112,7 @@
 		            },
 		            counterQuestion: function() {
 		            	this.qFlg = this.qFlg + 1;
-		            }
+		            },
 		        },
 		    });
 		</script>

@@ -47,11 +47,11 @@
 						<el-row>
 							<div>
 								<el-col>
-			                    	<div class="img mr-10" style="display: inline-block;" @click="onOmikugiCardCLick" @mouseenter="onOmikugienter" @mouseleave="onMouseleave">
+			                    	<div class="img mr-10" style="display: inline-block;" @click="onYusituCardCLick" @mouseenter="onOmikugienter" @mouseleave="onMouseleave">
 			                        	<img th:src="@{/image/onsen.png}" width="20px" height="20px" />
 			                        	<span>「湯質」で選ぶ</span>
 			                        </div>
-			                    	<div class="img ml-10" style="display: inline-block;" @click="onOmikugiCardCLick" @mouseenter="onTenCardenter" @mouseleave="onMouseleave">
+			                    	<div class="img ml-10" style="display: inline-block;" @click="onLocateCardCLick" @mouseenter="onTenCardenter" @mouseleave="onMouseleave">
 			                        	<img th:src="@{/image/onsen.png}" width="20px" height="20px" />
 			                        	<span>「立地」で選ぶ</span>
 			                        </div>
@@ -136,8 +136,11 @@
 			        onTenCardCLick: function () {
 			            window.location.href = "ten";
 			        },
-			        onOmikugiCardCLick: function () {
+			        onYusituCardCLick: function () {
 			            window.location.href = "omikugi";
+			        },
+			        onLocateCardCLick: function () {
+			            window.location.href = "omikugi_2";
 			        },
 			        onCapyenter: function() {
 			        	this.display = this.informations[0];
