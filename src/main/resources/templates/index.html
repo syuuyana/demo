@@ -53,15 +53,15 @@
 			                        </div>
 			                    	<div class="img ml-10" style="display: inline-block;" @click="onLocateCardCLick" @mouseenter="onTenCardenter" @mouseleave="onMouseleave">
 			                        	<img th:src="@{/image/onsen.png}" width="20px" height="20px" />
-			                        	<span>「立地」で選ぶ</span>
+			                        	<span>「アクティビティ性」で選ぶ</span>
 			                        </div>
 			                    </el-col>
 							</div>
 							<div>
 								<el-col>
-			                    	<div class="img mr-10" style="display: inline-block;" @click="onOmikugiCardCLick" @mouseenter="onOmikugienter" @mouseleave="onMouseleave">
+			                    	<div class="img mr-10" style="display: inline-block;" @click="onEffectCardCLick" @mouseenter="onOmikugienter" @mouseleave="onMouseleave">
 			                        	<img th:src="@{/image/onsen.png}" width="20px" height="20px" />
-			                        	<span>「ロケーション」で選ぶ</span>
+			                        	<span>「効能」で選ぶ</span>
 			                        </div>
 			                        <div class="animal" >
 					                 	<div class="animal_chat" style="display: inline-block;">
@@ -70,9 +70,9 @@
 					                 	</div>
 					                 	<img class="pt-50" th:src="@{/image/capy.png}"  width="300px" height="300px" @mouseenter="onCapyenter" @mouseleave="onMouseleave" />
 					                 </div>
-			                    	<div class="img ml-10" style="display: inline-block;" @click="onOmikugiCardCLick" @mouseenter="onTenCardenter" @mouseleave="onMouseleave">
+			                    	<div class="img ml-10" style="display: inline-block;" @click="" @mouseenter="onTenCardenter" @mouseleave="onMouseleave">
 			                        	<img th:src="@{/image/onsen.png}" width="20px" height="20px" />
-			                        	<span>「アクティビティ」で選ぶ</span>
+			                        	<span>「」で選ぶ</span>
 			                        </div>
 			                    </el-col>
 							</div>
@@ -86,13 +86,13 @@
 		             </div>
 		             <div>
 						<el-col>
-	                    	<div class="img mr-10" style="display: inline-block;" @click="onOmikugiCardCLick" @mouseenter="onOmikugienter" @mouseleave="onMouseleave">
+	                    	<div class="img mr-10" style="display: inline-block;" @click="" @mouseenter="onOmikugienter" @mouseleave="onMouseleave">
 	                        	<img th:src="@{/image/onsen.png}" width="20px" height="20px" />
-	                        	<span>「湯質」で選ぶ</span>
+	                        	<span>「」で選ぶ</span>
 	                        </div>
-	                    	<div class="img ml-10" style="display: inline-block;" @click="onOmikugiCardCLick" @mouseenter="onTenCardenter" @mouseleave="onMouseleave">
+	                    	<div class="img ml-10" style="display: inline-block;" @click="" @mouseenter="onTenCardenter" @mouseleave="onMouseleave">
 	                        	<img th:src="@{/image/onsen.png}" width="20px" height="20px" />
-	                        	<span>「立地」で選ぶ</span>
+	                        	<span>「」で選ぶ</span>
 	                        </div>
 	                    </el-col>
 					</div>
@@ -141,6 +141,9 @@
 			        },
 			        onLocateCardCLick: function () {
 			            window.location.href = "omikugi_2";
+			        },
+			        onEffectCardCLick: function () {
+			            window.location.href = "omikugi_3";
 			        },
 			        onCapyenter: function() {
 			        	this.display = this.informations[0];

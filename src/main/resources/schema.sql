@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS select_one (
 	one_second_times int NOT NULL,
 	one_third_times int NOT NULL,
 	select_one_date DATE NOT NULL,
+	category int NOT NULL,
 	PRIMARY KEY (select_id)
 );
 

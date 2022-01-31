@@ -10,5 +10,6 @@ public class SelectOneModel {
 	private int oneFirstTimes;
 	private int oneSecondTimes;
 	private int oneThirdTimes;
+	private int category;
 	private LocalDate selectOneDate;
 }

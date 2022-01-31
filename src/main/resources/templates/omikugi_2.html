@@ -32,54 +32,71 @@
        					<div class="q1_1" v-if="qFlg == 1">
        						<div class="question">
        							<h1>Q1</h1>
-       							<h1>大分市から近い</h1>
+       							<h1>別府に来るときは誰を連れてくる？</h1>
        						</div>
        						<div class="click mt-50">
        							<div class="img mr-10" style="display: inline-block;" @click="oneclick(3); counterQuestion()">
-			                        <span>高め</span>
+			                        <span>家族(子供含む)で楽しむ</span>
 			                    </div>
 			                    <div class="img ml-10" style="display: inline-block;" @click="oneclick(2); counterQuestion()">
-			                        <span>普通</span>
+			                        <span>家族(大人のみ)で楽しむ</span>
 			                    </div>
 			                    <div class="img ml-10" style="display: inline-block;" @click="oneclick(1); counterQuestion()">
-			                        <span>低め</span>
+			                        <span>一人で楽しむ</span>
 			                    </div>
        						</div>
        					</div>
        					<div class="q1_2" v-if="qFlg == 2">
        						<div class="question">
        							<h1>Q2</h1>
-       							<h1>硫黄は、どのくらいが理想ですか？</h1>
+       							<h1>別府に一番求めるとしたらどれ？</h1>
        						</div>
        						<div class="click mt-50">
        							<div class="img mr-10" style="display: inline-block;" @click="twoclick(3); counterQuestion()">
-			                        <span>高め</span>
+			                        <span>レジャー施設</span>
 			                    </div>
 			                    <div class="img ml-10" style="display: inline-block;" @click="twoclick(2); counterQuestion()">
-			                        <span>普通</span>
+			                        <span>安らぎ</span>
 			                    </div>
 			                    <div class="img ml-10" style="display: inline-block;" @click="twoclick(1); counterQuestion()">
-			                        <span>低め</span>
+			                        <span>どちらかとは言えない</span>
 			                    </div>
        						</div>
        					</div>
        					<div class="q1_3" v-if="qFlg == 3">
        						<div class="question">
        							<h1>Q3</h1>
-       							<h1>白濁は、どのくらいが理想ですか？</h1>
+       							<h1>当日は何をして遊びたい？</h1>
        						</div>
        						<div class="click mt-50">
        							<div class="img mr-10" style="display: inline-block;" @click="threeclick(3); counterQuestion()">
-			                        <span>濃い</span>
+			                        <span>温泉めぐり</span>
 			                    </div>
 			                    <div class="img ml-10" style="display: inline-block;" @click="threeclick(2); counterQuestion()">
-			                        <span>普通</span>
+			                        <span>旅館でゆっくり</span>
 			                    </div>
 			                    <div class="img ml-10" style="display: inline-block;" @click="threeclick(1); counterQuestion()">
-			                        <span>薄い</span>
+			                        <span>遊園地で遊びたい</span>
 			                    </div>
        						</div>
        					</div>
+       					<div class="loading" v-if="qFlg == 4">
+       						<div class="question">
+       							<h1>只今処理中です。</h1>
+       							<h1>処理が終了するまで、しばらくお待ちください。</h1>
+       						</div>
+       						<div class="click mt-50">
+			                    <img th:src="@{/image/mozo.svg}" class="content mt-50" width="100px" height="100px" />
+    							<div class="content mt-80">
+    								<i class="el-icon-loading"></i>
+    							</div>
+    							<div class="content mt-50">
+	       							<span>ちょっとだけ待ってね。</span>
+	       							<button @click="onResultCLick()">次へ</button>
+		       					</div>
+       						</div>
+       					</div>
+       					<!--  
        					<div class="loading" v-if="qFlg == 4">
        						<div id="overlay">
        							<div id="content">
@@ -89,17 +106,18 @@
        								</div>
        								<div class="content mt-50">
 			       						<span>ちょっとだけ待ってね。</span>
-			       						<button @click="onResultCLick">次へ</button>
+			       						<button @click="onResultCLick()">次へ</button>
 			       					</div>
 		       					</div>
 	       					</div>
        					</div>
+       					-->
        				</el-main>
       			</el-container>
 	    </div>
 	    <script>
 		  	ELEMENT.locale(ELEMENT.lang.ja)
-		  	const json = {};
+		  	let json = {};
 		    var ten = new Vue({
 		    	el: '#app',
 		    	data: {
@@ -111,6 +129,7 @@
 		        methods: {
 		        		threeclick: function(value) {
 		        			json['third_times'] = value;
+		        			json['category'] = 2;
 		        			json['select_date'] = new Date;
 		        			// 試験用
 		        			//const json1 = {
@@ -128,10 +147,13 @@
 		        				function(response) {
 		        					this.yesFlg = true;
 		        					this.noFlg = false;
-		        					delete json['first_times'];
-		        					delete json['second_times'];
-		        					delete json['third_times'];
-		        					delete json['select_date'];
+		        					//delete json['first_times'];
+		        					//delete json['second_times'];
+		        					//delete json['third_times'];
+		        					//delete json['select_date'];
+		        					//delete json['category'];
+		        					//delete json;
+		        					window.location.href = "result";
 		        				},
 		        				function () {
 		        					this.yesFlg = false;

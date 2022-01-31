@@ -1,4 +1,4 @@
-package com.example.demo.application.action;
+package com.example.demo.application.action_sele;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +18,7 @@ public class PostActionController {
 	@Autowired
 	SelectOneService selectOneService;
 	
-	@Autowired
+	@Autowired // DI(依存性注入)のためのインターフェース
 	InsertTimes insertTimes;
 	
 	@RequestMapping(method = RequestMethod.POST)
@@ -36,16 +36,24 @@ public class PostActionController {
 		int i = body.getFirst_times();
 		int j = body.getSecond_times();
 		int k = body.getThird_times();
+		int category = body.getCategory();
 		select.setOneFirstTimes(i);
 		select.setOneSecondTimes(j);
 		select.setOneThirdTimes(k);
+		select.setCategory(category);
 		select.setSelectOneDate(body.getSelect_date());
-		selectOneService.countOne(select);
-		
-		//System.out.println(select.getSelectId());
+		//System.out.println(body.getSelectId());
+		selectOneService.countOne(select); // selectId生成
 		int one_id = select.getSelectId();
-		System.out.println("取得したIDは" + one_id + "です");
+		System.out.println("取得したIDは" + one_id + "です1-1");
 		insertTimes.setSelectId(one_id);
+		insertTimes.setFirst_times(i);
+		insertTimes.setSecond_times(j);
+		insertTimes.setThird_times(k);
+		insertTimes.setCategory(category);
+		insertTimes.setSelect_date(body.getSelect_date());
+		
+		System.out.println("取得したIDは" + one_id + "です1-2");
 		return new ResponseEntity<>(HttpStatus.OK); // status code 200
 	}
 }

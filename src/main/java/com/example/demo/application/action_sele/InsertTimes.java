@@ -1,4 +1,4 @@
-package com.example.demo.application.action;
+package com.example.demo.application.action_sele;
 
 import java.time.LocalDate;
 
@@ -12,9 +12,10 @@ import lombok.Data;
 @SessionScope
 public class InsertTimes {
 	private int selectId;
-	private int first_times;
-	private int second_times;
-	private int third_times;
-	private LocalDate select_date;
+	private int first_times; // //
+	private int second_times; // //
+	private int third_times; // //
+	private int category; // //
+	private LocalDate select_date; // //
 	private int pushId;
 }

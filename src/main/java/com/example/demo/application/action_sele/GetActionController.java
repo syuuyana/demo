@@ -1,4 +1,4 @@
-package com.example.demo.application.action;
+package com.example.demo.application.action_sele;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,27 +28,30 @@ public class GetActionController {
 	@Autowired
 	PushOneService pushOneService;
 	
-	@Autowired
+	@Autowired // DI(依存性注入)のためのインターフェース
 	InsertTimes insertTimes;
 	
 		@RequestMapping(method = RequestMethod.POST)
 		ResponseEntity<OutputResult> doOnePush() {
-			SelectOneModel select = new SelectOneModel();
+			//SelectOneModel select = new SelectOneModel();
 			IndexSortingController sort = new IndexSortingController();
-			PushOneModel push = new PushOneModel();
+			//PushOneModel push = new PushOneModel();
 			OutputResult result = new OutputResult();
 			
 			// 入力部分
+		    System.out.println(insertTimes);
 			int one_id = insertTimes.getSelectId();
-			System.out.println("取得したIDは" + one_id + "です");
+			System.out.println("取得したIDは" + one_id + "です2");
 			SelectOneModel one_date = selectOneMapper.findOne(one_id);
 			int i = one_date.getOneFirstTimes();
 			int j = one_date.getOneSecondTimes();
 		    int k = one_date.getOneThirdTimes();
-		    System.out.println("取得した数字は" + i + "と" + j + "と" + k + "です");
+		    int category = one_date.getCategory();
+		    System.out.println("取得した数字は" + i + "と" + j + "と" + k + "です。");
+		    System.out.println("カテゴリーは" + category + "です。");
 			
 			// 処理部分
-			int return_one_id = sort.indexOneSorting(i, j, k);
+			int return_one_id = sort.indexOneSorting(i, j, k, category);
 			PushOneModel return_one_data = pushOneMapper.findOne(return_one_id);
 			System.out.println(return_one_data);
 			

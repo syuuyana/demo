@@ -81,6 +81,22 @@
        						</div>
        					</div>
        					<div class="loading" v-if="qFlg == 4">
+       						<div class="question">
+       							<h1>只今処理中です。</h1>
+       							<h1>処理が終了するまで、しばらくお待ちください。</h1>
+       						</div>
+       						<div class="click mt-50">
+			                    <img th:src="@{/image/mozo.svg}" class="content mt-50" width="100px" height="100px" />
+    							<div class="content mt-80">
+    								<i class="el-icon-loading"></i>
+    							</div>
+    							<div class="content mt-50">
+	       							<span>ちょっとだけ待ってね。</span>
+	       							<button @click="onResultCLick()">次へ</button>
+		       					</div>
+       						</div>
+       					</div>
+       						<!-- 
        						<div id="overlay">
        							<div id="content">
        								<img th:src="@{/image/mozo.svg}" class="content mt-50" width="100px" height="100px" />
@@ -89,29 +105,41 @@
        								</div>
        								<div class="content mt-50">
 			       						<span>ちょっとだけ待ってね。</span>
-			       						<button @click="onResultCLick">次へ</button>
+			       						<button @click="onResultCLick()">次へ</button>
 			       					</div>
 		       					</div>
 	       					</div>
-       					</div>
+	       					 -->
        				</el-main>
       			</el-container>
 	    </div>
 	    <script>
 		  	ELEMENT.locale(ELEMENT.lang.ja)
-		  	const json = {};
 		    var ten = new Vue({
 		    	el: '#app',
 		    	data: {
 		            qFlg: 1,
 		            yesFlg: false,
 		            noFlg: false,
+		            json: {},
 		        },
 		    	name: 'omikugi',
 		        methods: {
+			        	oneclick: function(value) {
+		        			this.json['first_times'] = value;
+		        			console.log(JSON.stringify(this.json));
+		      			}, 
+		      			twoclick: function(value) {
+		        			this.json['second_times'] = value;
+		        			var today = new Date;
+		        			this.json['select_date'] =  today // today.getFullYear() + "/" +  today.getMonth() + 1 + "/"+ today.getDate()
+		        			console.log(this.json['select_date']);
+		        			console.log(JSON.stringify(this.json));
+		      			},
 		        		threeclick: function(value) {
-		        			json['third_times'] = value;
-		        			json['select_date'] = new Date;
+		        			this.json['third_times'] = value;
+		        			this.json['category'] = 1;
+		        			console.log(JSON.stringify(this.json));
 		        			// 試験用
 		        			//const json1 = {
 		      				//		first_times: value,
@@ -122,16 +150,20 @@
 		        			$.ajax({
 		        				url: 'action/one/pull',  // thisの更新対策(scopeでは別処理)
 		        				type: 'post',
-		        				data: JSON.stringify(json),
+		        				data: JSON.stringify(this.json),
 		        				contentType: 'application/json'
 		        			}).then(
 		        				function(response) {
 		        					this.yesFlg = true;
 		        					this.noFlg = false;
-		        					delete json['first_times'];
-		        					delete json['second_times'];
-		        					delete json['third_times'];
-		        					delete json['select_date'];
+		        					//delete json['first_times'];
+		        					//delete json['second_times'];
+		        					//delete json['third_times'];
+		        					//delete json['select_date'];
+		        					//delete json['category'];
+		        					this.json = {};
+		        					console.log("yes");
+		        					window.location.href = "result";
 		        				},
 		        				function () {
 		        					this.yesFlg = false;
@@ -139,12 +171,6 @@
 		        				}
 		        			);
 		        		},// ここでajaxの非同期通信を終了
-		        		oneclick: function(value) {
-		        			json['first_times'] = value;
-		      			}, 
-		      			twoclick: function(value) {
-		        			json['second_times'] = value;
-		      			}, 
 			        	onMainCardCLick: function () {
 			                window.location.href = "index";
 			            },
@@ -153,7 +179,7 @@
 			            },
 			            counterQuestion: function() {
 			            	this.qFlg = this.qFlg + 1;
-			            }
+			            },
 		         },
 		    });
 		</script>
