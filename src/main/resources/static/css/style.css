@@ -6,14 +6,15 @@ html, body {
 
 
 body {
-    /*background-image: url("https://cdn.pixabay.com/photo/2016/06/02/23/08/lemons-1432439_960_720.jpg");  /* 写真の指定 */
-    background-color: #ccffcc;
+    background-image: url(../image/coast.jpg);  /* 写真の指定 */
+    /*background-color: #ccffcc;*/
 	background-blend-mode: lighten;
     background-position: center center;  /* 画像を常に天地左右の中央に配置 */
     background-repeat: no-repeat;  /* 画像をタイル状に繰り返し表示しない */
     background-attachment: fixed;  /* コンテンツの高さが画像の高さより大きい時、動かないように固定 */
     background-size: cover;  /* 表示するコンテナの大きさに基づいて、背景画像を調整 */
     font-family: 'Zen Maru Gothic', sans-serif;
+    overflow: scroll;
 }
 
 
@@ -34,12 +35,14 @@ body {
 
 .img {
  	border-radius: 50%;
- 	width: 300px;
- 	height: 300px;
+ 	width: 250px;
+ 	height: 250px;
  	background: skyblue;
  	text-align: center;
- 	line-height: 300px;
+ 	line-height: 250px;
 }
+
+
 
 
 .el-header {
@@ -71,8 +74,13 @@ body {
 
 .animal_chat p {
 	position: absolute;
-	padding-left: 125px;
+	padding-left: 30px;
     padding-top: 110px;
+}
+
+
+table {
+	width: 400px;
 }
 
 
@@ -151,6 +159,11 @@ body {
 }
 
 
+.mt-90 {
+ 	margin-top: 90px;
+}
+
+
 .mt-80 {
  	margin-top: 80px;
 }
@@ -168,4 +181,88 @@ body {
 
 .mr-10 {
 	margin-right: 10px;
+}
+
+
+/* ボタン */
+.btn {
+	height: 50px;
+    width: 200px;
+    border-radius: 150px;
+    font-family: 'Zen Maru Gothic', sans-serif;
+}
+
+
+.ryokan {
+	border: 2px solid transparent;
+    padding: 10px 30px;
+    background: #f1dcd8;
+    color: #000;
+    cursor: pointer;
+}
+
+.ryokan:hover {
+	border: 2px solid rgb(240, 148, 148);
+    background: #FFF;
+    color: #000;
+}
+
+
+.higaeri {
+    border: 2px solid transparent;
+    padding: 10px 30px;
+    background: #d8e4f1;
+    color: #000;
+    cursor: pointer;
+}
+
+.higaeri:hover {
+    border: 2px solid rgb(94, 158, 241);
+    background: #FFF;
+    color: #000;
+}
+
+
+.top {
+    border: 2px solid transparent;
+    padding: 10px 30px;
+    background: #f3e597;
+    color: #000;
+    cursor: pointer;
+}
+
+.top:hover {
+    border: 2px solid rgb(235, 223, 122);
+    background: #FFF;
+    color: #000;
+}
+
+
+.underbar {
+	text-decoration: none;
+}
+
+
+.fab {
+	color: black;
+	font-size: 31px;
+}
+
+
+/* font-size指定 */
+.onsen_font {
+	font-size: 21px;
+}
+
+
+/* media設定 */
+@media (max-width: 856px) {
+	.scroll {
+    	display: none;
+    }
+}
+@media (min-width: 856px) {
+	.scroll {
+    	display: inline-block;
+    }
 }

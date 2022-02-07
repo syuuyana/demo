@@ -17,5 +17,5 @@ public class InsertTimes {
 	private int third_times; // //
 	private int category; // //
 	private LocalDate select_date; // //
-	private int pushId;
+	// private int pushId;
 }

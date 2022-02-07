@@ -16,6 +16,7 @@
 		<link href="https://fonts.googleapis.com/css2?family=Courgette&family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
     	
 		<link rel="stylesheet" th:href="@{/css/style.css}" />
+		<link rel="stylesheet" th:href="@{/css/background.css}" />
 	</head>
 	<body>
 		<div id="app">
@@ -35,16 +36,23 @@
        							<h1>別府に来るときは誰を連れてくる？</h1>
        						</div>
        						<div class="click mt-50">
-       							<div class="img mr-10" style="display: inline-block;" @click="oneclick(3); counterQuestion()">
+       							<div class="img mr-10" style="display: inline-block;" @click="oneclick(3); counterQuestion()" @mouseenter="onChildenter()" @mouseleave="onMouseleave()">
 			                        <span>家族(子供含む)で楽しむ</span>
 			                    </div>
-			                    <div class="img ml-10" style="display: inline-block;" @click="oneclick(2); counterQuestion()">
+			                    <div class="img ml-10" style="display: inline-block;" @click="oneclick(2); counterQuestion()" @mouseenter="onAdultenter()" @mouseleave="onMouseleave()">
 			                        <span>家族(大人のみ)で楽しむ</span>
 			                    </div>
-			                    <div class="img ml-10" style="display: inline-block;" @click="oneclick(1); counterQuestion()">
+			                    <div class="img ml-10" style="display: inline-block;" @click="oneclick(1); counterQuestion()" @mouseenter="onOnlyenter()" @mouseleave="onMouseleave()">
 			                        <span>一人で楽しむ</span>
 			                    </div>
        						</div>
+       						<div class="animal" >
+			                 	<div class="animal_chat" style="display: inline-block;">
+			                 		<p>{{ display }}</p>
+			                 		<img th:src="@{/image/fuki2.svg}" width="300px" height="300px" />
+			                 	</div>
+			                 	<img class="pt-50" th:src="@{/image/capy.png}"  width="300px" height="300px" @mouseenter="onCapyenter()" @mouseleave="onMouseleave()" />
+			                 </div>
        					</div>
        					<div class="q1_2" v-if="qFlg == 2">
        						<div class="question">
@@ -52,16 +60,23 @@
        							<h1>別府に一番求めるとしたらどれ？</h1>
        						</div>
        						<div class="click mt-50">
-       							<div class="img mr-10" style="display: inline-block;" @click="twoclick(3); counterQuestion()">
+       							<div class="img mr-10" style="display: inline-block;" @click="twoclick(3); counterQuestion()" @mouseenter="onLeisureenter()" @mouseleave="onMouseleave()" >
 			                        <span>レジャー施設</span>
 			                    </div>
-			                    <div class="img ml-10" style="display: inline-block;" @click="twoclick(2); counterQuestion()">
+			                    <div class="img ml-10" style="display: inline-block;" @click="twoclick(2); counterQuestion()" @mouseenter="onRestenter()" @mouseleave="onMouseleave()">
 			                        <span>安らぎ</span>
 			                    </div>
-			                    <div class="img ml-10" style="display: inline-block;" @click="twoclick(1); counterQuestion()">
+			                    <div class="img ml-10" style="display: inline-block;" @click="twoclick(1); counterQuestion()" @mouseenter="onGetlostenter()" @mouseleave="onMouseleave()">
 			                        <span>どちらかとは言えない</span>
 			                    </div>
        						</div>
+       						<div class="animal" >
+			                 	<div class="animal_chat" style="display: inline-block;">
+			                 		<p>{{ display }}</p>
+			                 		<img th:src="@{/image/fuki2.svg}" width="300px" height="300px" />
+			                 	</div>
+			                 	<img class="pt-50" th:src="@{/image/capy.png}"  width="300px" height="300px" @mouseenter="onCapyenter()" @mouseleave="onMouseleave()" />
+			                 </div>
        					</div>
        					<div class="q1_3" v-if="qFlg == 3">
        						<div class="question">
@@ -69,16 +84,23 @@
        							<h1>当日は何をして遊びたい？</h1>
        						</div>
        						<div class="click mt-50">
-       							<div class="img mr-10" style="display: inline-block;" @click="threeclick(3); counterQuestion()">
+       							<div class="img mr-10" style="display: inline-block;" @click="threeclick(3); counterQuestion()" @mouseenter="onGoaroundenter()" @mouseleave="onMouseleave()">
 			                        <span>温泉めぐり</span>
 			                    </div>
-			                    <div class="img ml-10" style="display: inline-block;" @click="threeclick(2); counterQuestion()">
+			                    <div class="img ml-10" style="display: inline-block;" @click="threeclick(2); counterQuestion()"  @mouseenter="onHotelenter()" @mouseleave="onMouseleave()">
 			                        <span>旅館でゆっくり</span>
 			                    </div>
-			                    <div class="img ml-10" style="display: inline-block;" @click="threeclick(1); counterQuestion()">
-			                        <span>遊園地で遊びたい</span>
+			                    <div class="img ml-10" style="display: inline-block;" @click="threeclick(1); counterQuestion()" @mouseenter="onGetlostenter()" @mouseleave="onMouseleave()">
+			                        <span>どちらでもよい</span>
 			                    </div>
        						</div>
+       						<div class="animal" >
+			                 	<div class="animal_chat" style="display: inline-block;">
+			                 		<p>{{ display }}</p>
+			                 		<img th:src="@{/image/fuki2.svg}" width="300px" height="300px" />
+			                 	</div>
+			                 	<img class="pt-50" th:src="@{/image/capy.png}"  width="300px" height="300px" @mouseenter="onCapyenter()" @mouseleave="onMouseleave()" />
+			                 </div>
        					</div>
        					<div class="loading" v-if="qFlg == 4">
        						<div class="question">
@@ -124,6 +146,19 @@
 		            qFlg: 1,
 		            yesFlg: false,
 		            noFlg: false,
+		            informations: [
+						'子供はいつ見てもかわいいのー！',
+						'たまには大人旅も楽しいのー！！',
+						'一人で温泉を堪能するもよし！！',
+						'大分も遊べる所がいっぱいだぞー',
+						'たまには疲れを癒すもええぞー！',
+						'どっちもよく見えてしまってのー',
+						'温泉は日本で一番多い種類あるぞ！',
+						'別府の旅館は温泉もついてて最高！',
+						'ワシのことはええんじゃよ、、、',
+						'好きなボタンを押してみてくれ！！'
+					],
+					display: "",
 		        },
 		    	name: 'omikugi',
 		        methods: {
@@ -175,7 +210,37 @@
 			            },
 			            counterQuestion: function() {
 			            	this.qFlg = this.qFlg + 1;
-			            }
+			            },
+			            onChildenter: function() {
+				        	this.display = this.informations[0];
+				    	},
+				    	onAdultenter: function() {
+				        	this.display = this.informations[1];
+				    	},
+				    	onOnlyenter: function() {
+				        	this.display = this.informations[2];
+				    	},
+				    	onLeisureenter: function() {
+				        	this.display = this.informations[3];
+				    	},
+				    	onRestenter: function() {
+				        	this.display = this.informations[4];
+				    	},
+				    	onGetlostenter: function() {
+				        	this.display = this.informations[5];
+				    	},
+				    	onGoaroundenter: function() {
+				        	this.display = this.informations[6];
+				    	},
+				    	onHotelenter: function() {
+				        	this.display = this.informations[7];
+				    	},
+				    	onCapyenter: function() {
+				    		this.display = this.informations[8];
+				    	},
+				    	onMouseleave: function() {
+				    		this.display = this.informations[9];
+				    	},
 		         },
 		    });
 		</script>

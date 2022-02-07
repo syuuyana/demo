@@ -16,6 +16,8 @@
     	
     	<link rel="stylesheet" th:href="@{/webjars/element-ui/2.0.8/lib/theme-chalk/index.css}" />
 		<link rel="stylesheet" th:href="@{/css/style.css}" />
+		<link rel="stylesheet" th:href="@{/css/color.css}" />
+		<link rel="shortcut icon" href="favicon.ico" /> 
 		
 	</head>
 	<body>
@@ -38,7 +40,7 @@
 		            		<h1> とは</h1>
 	            		</div>
 		            	<h4>あなたにぴったりの別府温泉が見つかるサービスです</h4>
-						<p class="mt-20">これは、様々な条件から八種類あるといわれる別府温泉<br>
+						<p class="mt-20">地元大分出身である私が、八種類あるといわれる別府温泉<br>
 							の中から、あなたに合う温泉を提案するサービスです。<br>
 							あなたにとって、一番ぴったりの温泉が見つかりますよ！
 						</p>
@@ -47,11 +49,11 @@
 						<el-row>
 							<div>
 								<el-col>
-			                    	<div class="img mr-10" style="display: inline-block;" @click="onYusituCardCLick" @mouseenter="onOmikugienter" @mouseleave="onMouseleave">
+			                    	<div class="img salmon mr-10" style="display: inline-block;" @click="onYusituCardCLick" @mouseenter="onYusituenter" @mouseleave="onMouseleave">
 			                        	<img th:src="@{/image/onsen.png}" width="20px" height="20px" />
 			                        	<span>「湯質」で選ぶ</span>
 			                        </div>
-			                    	<div class="img ml-10" style="display: inline-block;" @click="onLocateCardCLick" @mouseenter="onTenCardenter" @mouseleave="onMouseleave">
+			                    	<div class="img bisque ml-10" style="display: inline-block;" @click="onLocateCardCLick" @mouseenter="onActiveenter" @mouseleave="onMouseleave">
 			                        	<img th:src="@{/image/onsen.png}" width="20px" height="20px" />
 			                        	<span>「アクティビティ性」で選ぶ</span>
 			                        </div>
@@ -59,50 +61,41 @@
 							</div>
 							<div>
 								<el-col>
-			                    	<div class="img mr-10" style="display: inline-block;" @click="onEffectCardCLick" @mouseenter="onOmikugienter" @mouseleave="onMouseleave">
+			                    	<div class="img sandybrown mr-10" style="display: inline-block;" @click="onEffectCardCLick" @mouseenter="onHattoenter" @mouseleave="onMouseleave">
 			                        	<img th:src="@{/image/onsen.png}" width="20px" height="20px" />
-			                        	<span>「効能」で選ぶ</span>
+			                        	<span>「八湯図鑑」</span>
 			                        </div>
-			                        <div class="animal" >
-					                 	<div class="animal_chat" style="display: inline-block;">
-					                 		<p>{{ display }}</p>
-					                 		<img th:src="@{/image/fuki2.svg}" width="300px" height="300px" />
-					                 	</div>
-					                 	<img class="pt-50" th:src="@{/image/capy.png}"  width="300px" height="300px" @mouseenter="onCapyenter" @mouseleave="onMouseleave" />
-					                 </div>
-			                    	<div class="img ml-10" style="display: inline-block;" @click="" @mouseenter="onTenCardenter" @mouseleave="onMouseleave">
+			                    	<div class="img ml-10 mr-10 scroll" @click="">
+			                        	<span style="font-size: 19px;">{{ display }}</span>
+			                        </div>
+			                        <div class="img steelblue ml-10" style="display: inline-block;" @click="" @mouseenter="onOmikugienter" @mouseleave="onMouseleave">
 			                        	<img th:src="@{/image/onsen.png}" width="20px" height="20px" />
 			                        	<span>「」で選ぶ</span>
 			                        </div>
 			                    </el-col>
 							</div>
+							<!-- 
 		                    <el-col>
-		                        <div class="img" style="display: inline-block;" @click="onTenCardCLick" @mouseenter="onTenCardenter" @mouseleave="onMouseleave">
+		                        <div class="img turquoise" style="display: inline-block;" @click="onTenCardCLick" @mouseenter="onTenCardenter" @mouseleave="onMouseleave">
 		                        	<img th:src="@{/image/onsen.png}" width="20px" height="20px" />
-		                        	<span>温泉日記</span>
+		                        	<span>「」</span>
 		                        </div>
 		                    </el-col>
 		                 </el-row>
+		                  -->
 		             </div>
 		             <div>
 						<el-col>
-	                    	<div class="img mr-10" style="display: inline-block;" @click="" @mouseenter="onOmikugienter" @mouseleave="onMouseleave">
+	                    	<div class="img mediumspringgreen mr-10" style="display: inline-block;" @click="" @mouseenter="onOmikugienter" @mouseleave="onMouseleave">
 	                        	<img th:src="@{/image/onsen.png}" width="20px" height="20px" />
 	                        	<span>「」で選ぶ</span>
 	                        </div>
-	                    	<div class="img ml-10" style="display: inline-block;" @click="" @mouseenter="onTenCardenter" @mouseleave="onMouseleave">
+	                    	<div class="img turquoise ml-10" style="display: inline-block;" @click="" @mouseenter="onOmikugienter" @mouseleave="onMouseleave">
 	                        	<img th:src="@{/image/onsen.png}" width="20px" height="20px" />
 	                        	<span>「」で選ぶ</span>
 	                        </div>
 	                    </el-col>
 					</div>
-	                 <div class="animal" >
-	                 	<div class="animal_chat" style="display: inline-block;">
-	                 		<p>{{ display }}</p>
-	                 		<img th:src="@{/image/fuki2.svg}" width="300px" height="300px" />
-	                 	</div>
-	                 	<img class="pt-50" th:src="@{/image/capy.png}"  width="300px" height="300px" @mouseenter="onCapyenter" @mouseleave="onMouseleave" />
-	                 </div>
 	             </el-main>
 			</el-container>
             
@@ -124,10 +117,11 @@
 				el: '#app',
 				data: {
 					informations: [
-						'おはよう',
-						'立地',
 						'湯質',
-						'お好み',
+						'アクティブ',
+						'八湯図鑑',
+						'お好きなものを選んでね！',
+						'もう少しだけ待っててね！'
 					],
 					display: "",
 				},
@@ -145,17 +139,20 @@
 			        onEffectCardCLick: function () {
 			            window.location.href = "omikugi_3";
 			        },
-			        onCapyenter: function() {
+			        onYusituenter: function() {
 			        	this.display = this.informations[0];
 			    	},
-			    	onOmikugienter: function() {
-			        	this.display = this.informations[2];
-			    	},
-			    	onTenCardenter: function() {
+			    	onActiveenter: function() {
 			        	this.display = this.informations[1];
 			    	},
+			    	onHattoenter: function() {
+			        	this.display = this.informations[2];
+			    	},
 			    	onMouseleave: function() {
-			    		this.display = this.informations[0];
+			    		this.display = this.informations[3];
+			    	},
+			    	onOmikugienter: function() {
+			    		this.display = this.informations[4];
 			    	},
 			    },
 			});

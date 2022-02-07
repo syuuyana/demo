@@ -26,7 +26,13 @@ CREATE TABLE IF NOT EXISTS select_two (
 
 CREATE TABLE IF NOT EXISTS push_one (
 	push_id SERIAL NOT NULL,
-	push_name TEXT,
+	push_name TEXT NOT NULL,
+	iou_star TEXT NOT NULL,
+	color_star TEXT NOT NULL,
+	temp_star TEXT NOT NULL,
+	exp TEXT NOT NULL,
+	quality TEXT NOT NULL,
+	effect TEXT NOT NULL,
 	PRIMARY KEY (push_id)
 );
 

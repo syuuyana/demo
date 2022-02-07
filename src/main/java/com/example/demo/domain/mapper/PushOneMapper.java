@@ -9,7 +9,7 @@ import com.example.demo.domain.model.PushOneModel;
 public interface PushOneMapper {
 	
 	// 特定のidからそのユーザの全ての情報を取得する関数
-	@Select("SELECT push_id, push_name FROM push_one WHERE push_id = #{pushId}")
+	@Select("SELECT push_id, push_name, iou_star, color_star, temp_star, exp, quality, effect FROM push_one WHERE push_id = #{pushId}")
 	PushOneModel findOne(int pushId);
 	
 	//findById

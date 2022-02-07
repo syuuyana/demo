@@ -16,6 +16,7 @@
 		<link href="https://fonts.googleapis.com/css2?family=Courgette&family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
     	
 		<link rel="stylesheet" th:href="@{/css/style.css}" />
+		<link rel="stylesheet" th:href="@{/css/babkground.css}" />
 	</head>
 	<body>
 		<div id="app">
@@ -35,28 +36,28 @@
        						</div>
        						<div class="click mt-50">
        							<div class="img mr-10" style="display: inline-block;" @click="click(1); counterQuestion()">
-			                        <span>別府</span>
+			                        <span class="onsen_font">観海寺</span>
 			                    </div>
-			                    <div class="img ml-10" style="display: inline-block;" @click="click(2); counterQuestion()">
-			                        <span>浜脇</span>
+			                    <div class="img ml-10 mr-10" style="display: inline-block;" @click="click(2); counterQuestion()">
+			                        <span class="onsen_font">別府</span>
 			                    </div>
-			                    <div class="img ml-10" style="display: inline-block;" @click="click(3); counterQuestion()">
-			                        <span>観海寺</span>
+			                    <div class="img ml-10 mr-10" style="display: inline-block;" @click="click(3); counterQuestion()">
+			                        <span class="onsen_font">浜脇</span>
 			                    </div>
-       							<div class="img mr-10" style="display: inline-block;" @click="click(4); counterQuestion()">
-			                        <span>堀田</span>
+       							<div class="img ml-10 mr-10" style="display: inline-block;" @click="click(4); counterQuestion()">
+			                        <span class="onsen_font">鉄輪</span>
 			                    </div>
 			                    <div class="img ml-10" style="display: inline-block;" @click="click(5); counterQuestion()">
-			                        <span>明礬</span>
+			                        <span class="onsen_font">明礬</span>
 			                    </div>
-			                    <div class="img ml-10" style="display: inline-block;" @click="click(6); counterQuestion()">
-			                        <span>鉄輪</span>
+			                    <div class="img mr-10" style="display: inline-block;" @click="click(6); counterQuestion()">
+			                        <span class="onsen_font">亀川</span>
 			                    </div>
-       							<div class="img mr-10" style="display: inline-block;" @click="click(7); counterQuestion()">
-			                        <span>柴石</span>
+       							<div class="img ml-10 mr-10" style="display: inline-block;" @click="click(7); counterQuestion()">
+			                        <span class="onsen_font">柴石</span>
 			                    </div>
 			                    <div class="img ml-10" style="display: inline-block;" @click="click(8); counterQuestion()">
-			                        <span>亀川</span>
+			                        <span class="onsen_font">堀田</span>
 			                    </div>
        						</div>
        					</div>
@@ -72,8 +73,8 @@
     							</div>
     							<div class="content mt-50">
 	       							<span>ちょっとだけ待ってね。</span>
-	       							<button @click="onResultCLick()">次へ</button>
 		       					</div>
+		       					<button class="btn top" @click="onMainCardCLick">トップへ戻る</button>
        						</div>
        					</div>
        				</el-main>
@@ -110,7 +111,7 @@
 		        			);
 		        		},// ここでajaxの非同期通信を終了
 			        	onMainCardCLick: function () {
-			                window.location.href = "index";
+			                window.location.href = "/";
 			            },
 			            onResultCLick: function () {
 			                window.location.href = "result";

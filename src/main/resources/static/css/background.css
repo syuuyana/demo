@@ -1,0 +1,20 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    background-image: url(../image/monkey.jpg);  /* 写真の指定 */
+    /*background-color: #ccffcc;*/
+	background-blend-mode: lighten;
+    background-position: center center;  /* 画像を常に天地左右の中央に配置 */
+    background-repeat: no-repeat;  /* 画像をタイル状に繰り返し表示しない */
+    background-attachment: fixed;  /* コンテンツの高さが画像の高さより大きい時、動かないように固定 */
+    background-size: cover;  /* 表示するコンテナの大きさに基づいて、背景画像を調整 */
+    font-family: 'Zen Maru Gothic', sans-serif;
+}
+
+#app {
+	background: rgba(255,255,255,0.5);
+}

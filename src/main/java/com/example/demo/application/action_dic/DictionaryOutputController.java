@@ -23,10 +23,10 @@ public class DictionaryOutputController {
 	@RequestMapping(method = RequestMethod.POST)
 	ResponseEntity<PushOneModel> doThreePull() {
 		PushOneModel onsen = new PushOneModel();
-		
 		int onsen_id = insertOnsen.getCategory();
 		System.out.println("先ほど取得した温泉番号は" + onsen_id + "です。");
 		onsen = pushOneMapper.findOne(onsen_id);
+		System.out.println(onsen);
 		return new ResponseEntity<>(onsen, HttpStatus.OK);
 	}
 	

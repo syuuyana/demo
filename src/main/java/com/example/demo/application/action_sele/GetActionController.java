@@ -57,15 +57,13 @@ public class GetActionController {
 			
 			// 出力部分
 			result.setPush_name(return_one_data.getPushName());
-			System.out.println(result.getPush_name());
+			result.setIouStar(return_one_data.getIouStar());
+			result.setColorStar(return_one_data.getColorStar());
+			result.setTempStar(return_one_data.getTempStar());
+			result.setExp(return_one_data.getExp());
+			result.setQuality(return_one_data.getQuality());
+			result.setEffect(return_one_data.getEffect());
 			System.out.println(result);
-			
-			//public ModelAndView returnData() {
-			//	ModelAndView mav = new ModelAndView();
-			//	mav.setViewName("push_name");
-			//	mav.addObject("push_name", return_one_data.getPushName());
-			//	return mav;
-			//}
 			
 			return new ResponseEntity<>(result, HttpStatus.OK);
 		}

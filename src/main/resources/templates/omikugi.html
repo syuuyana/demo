@@ -16,6 +16,7 @@
 		<link href="https://fonts.googleapis.com/css2?family=Courgette&family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
     	
 		<link rel="stylesheet" th:href="@{/css/style.css}" />
+		<link rel="stylesheet" th:href="@{/css/background.css}" />
 	</head>
 	<body>
 		<div id="app">
@@ -35,16 +36,23 @@
        							<h1>温度は、どのくらいが理想ですか？</h1>
        						</div>
        						<div class="click mt-50">
-       							<div class="img mr-10" style="display: inline-block;" @click="oneclick(3); counterQuestion()">
+       							<div class="img mr-10" style="display: inline-block;" @click="oneclick(3); counterQuestion()" @mouseenter="onHighenter()" @mouseleave="onMouseleave()">
 			                        <span>高め</span>
 			                    </div>
-			                    <div class="img ml-10" style="display: inline-block;" @click="oneclick(2); counterQuestion()">
+			                    <div class="img ml-10" style="display: inline-block;" @click="oneclick(2); counterQuestion()" @mouseenter="onNormalenter()" @mouseleave="onMouseleave()">
 			                        <span>普通</span>
 			                    </div>
-			                    <div class="img ml-10" style="display: inline-block;" @click="oneclick(1); counterQuestion()">
+			                    <div class="img ml-10" style="display: inline-block;" @click="oneclick(1); counterQuestion()" @mouseenter="onLowenter()" @mouseleave="onMouseleave()">
 			                        <span>低め</span>
 			                    </div>
        						</div>
+       						<div class="animal" >
+			                 	<div class="animal_chat" style="display: inline-block;">
+			                 		<p>{{ display }}</p>
+			                 		<img th:src="@{/image/fuki2.svg}" width="300px" height="300px" />
+			                 	</div>
+			                 	<img th:src="@{/image/capy.png}"  width="300px" height="300px" @mouseenter="onCapyenter()" @mouseleave="onMouseleave()" />
+			                </div>
        					</div>
        					<div class="q1_2" v-if="qFlg == 2">
        						<div class="question">
@@ -52,16 +60,23 @@
        							<h1>硫黄は、どのくらいが理想ですか？</h1>
        						</div>
        						<div class="click mt-50">
-       							<div class="img mr-10" style="display: inline-block;" @click="twoclick(3); counterQuestion()">
+       							<div class="img mr-10" style="display: inline-block;" @click="twoclick(3); counterQuestion()" @mouseenter="onHighenter()" @mouseleave="onMouseleave()">
 			                        <span>高め</span>
 			                    </div>
-			                    <div class="img ml-10" style="display: inline-block;" @click="twoclick(2); counterQuestion()">
+			                    <div class="img ml-10" style="display: inline-block;" @click="twoclick(2); counterQuestion()" @mouseenter="onNormalenter()" @mouseleave="onMouseleave()">
 			                        <span>普通</span>
 			                    </div>
-			                    <div class="img ml-10" style="display: inline-block;" @click="twoclick(1); counterQuestion()">
+			                    <div class="img ml-10" style="display: inline-block;" @click="twoclick(1); counterQuestion()" @mouseenter="onLowenter()" @mouseleave="onMouseleave()">
 			                        <span>低め</span>
 			                    </div>
        						</div>
+       						<div class="animal" >
+			                 	<div class="animal_chat" style="display: inline-block;">
+			                 		<p>{{ display }}</p>
+			                 		<img th:src="@{/image/fuki2.svg}" width="300px" height="300px" />
+			                 	</div>
+			                 	<img th:src="@{/image/capy.png}"  width="300px" height="300px" @mouseenter="onCapyenter()" @mouseleave="onMouseleave()" />
+			                </div>
        					</div>
        					<div class="q1_3" v-if="qFlg == 3">
        						<div class="question">
@@ -69,16 +84,23 @@
        							<h1>白濁は、どのくらいが理想ですか？</h1>
        						</div>
        						<div class="click mt-50">
-       							<div class="img mr-10" style="display: inline-block;" @click="threeclick(3); counterQuestion()">
+       							<div class="img mr-10" style="display: inline-block;" @click="threeclick(3); counterQuestion()" @mouseenter="onHighenter()" @mouseleave="onMouseleave()">
 			                        <span>濃い</span>
 			                    </div>
-			                    <div class="img ml-10" style="display: inline-block;" @click="threeclick(2); counterQuestion()">
+			                    <div class="img ml-10" style="display: inline-block;" @click="threeclick(2); counterQuestion()" @mouseenter="onNormalenter()" @mouseleave="onMouseleave()">
 			                        <span>普通</span>
 			                    </div>
-			                    <div class="img ml-10" style="display: inline-block;" @click="threeclick(1); counterQuestion()">
+			                    <div class="img ml-10" style="display: inline-block;" @click="threeclick(1); counterQuestion()" @mouseenter="onLowenter()" @mouseleave="onMouseleave()">
 			                        <span>薄い</span>
 			                    </div>
        						</div>
+       						<div class="animal" >
+			                 	<div class="animal_chat" style="display: inline-block;">
+			                 		<p>{{ display }}</p>
+			                 		<img th:src="@{/image/fuki2.svg}" width="300px" height="300px" />
+			                 	</div>
+			                 	<img th:src="@{/image/capy.png}"  width="300px" height="300px" @mouseenter="onCapyenter()" @mouseleave="onMouseleave()" />
+			                </div>
        					</div>
        					<div class="loading" v-if="qFlg == 4">
        						<div class="question">
@@ -86,7 +108,7 @@
        							<h1>処理が終了するまで、しばらくお待ちください。</h1>
        						</div>
        						<div class="click mt-50">
-			                    <img th:src="@{/image/mozo.svg}" class="content mt-50" width="100px" height="100px" />
+			                    <img th:src="@{/image/mozo.svg}" class="content mt-50" width="200px" height="200px" />
     							<div class="content mt-80">
     								<i class="el-icon-loading"></i>
     							</div>
@@ -122,6 +144,14 @@
 		            yesFlg: false,
 		            noFlg: false,
 		            json: {},
+		            informations: [
+						'高めなのがお好き？！？！？！？',
+						'普通なのがお好き？！？！？！？',
+						'低めなのがお好き？！？！？！？',
+						'ワシのことはええんじゃよ、、、',
+						'好きなボタンを押してみてくれ！！'
+					],
+					display: "",
 		        },
 		    	name: 'omikugi',
 		        methods: {
@@ -180,6 +210,21 @@
 			            counterQuestion: function() {
 			            	this.qFlg = this.qFlg + 1;
 			            },
+			            onHighenter: function() {
+				        	this.display = this.informations[0];
+				    	},
+				    	onNormalenter: function() {
+				        	this.display = this.informations[1];
+				    	},
+				    	onLowenter: function() {
+				        	this.display = this.informations[2];
+				    	},
+				    	onCapyenter: function() {
+				    		this.display = this.informations[3];
+				    	},
+				    	onMouseleave: function() {
+				    		this.display = this.informations[4];
+				    	},
 		         },
 		    });
 		</script>

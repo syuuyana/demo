@@ -18,7 +18,8 @@ public class DictionaryInputController {
 	@RequestMapping(method = RequestMethod.POST)
 	ResponseEntity<String> doThreePull(@RequestBody InsertOnsen body) {
 		int onsen_id = body.getCategory();
-		//pushOneModel.setPushId(onsen_id);
+		insertOnsen.setCategory(onsen_id);
+		System.out.println(onsen_id);
 		return new ResponseEntity<>(HttpStatus.OK); // status code 200
 	}
 	
